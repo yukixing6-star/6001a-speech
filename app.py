@@ -23,8 +23,10 @@ def upload_file():
             a = sr.Recognizer().record(source)
         s = sr.Recognizer().recognize_google(a)
         return(render_template("index1.html", result=s))
+    elif request.method == 'GET':
+        return render_template("index1.html", result="Please upload the file.")
     else:
-        return(render_template("index1.html", result="2"))
+        return(render_template("index1.html", result="error"))
     
 if __name__ == "__main__":
     app.run()
