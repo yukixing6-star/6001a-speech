@@ -4,6 +4,17 @@
 
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
+try:
+    import aifc3 as aifc
+except ImportError:
+    try:
+        import aifc
+    except ImportError:
+        import subprocess
+        import sys
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "aifc3"])
+        import aifc3 as aifc
+
 import speech_recognition as sr
 
 app = Flask(__name__)
